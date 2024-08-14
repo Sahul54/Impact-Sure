@@ -1,0 +1,22 @@
+Write a procedure to update the salaries of employees by 10000 who belongs to Management and IT 
+department and whose experience is greater than 5 months
+
+
+
+-----------sql--------------
+
+DELIMITER $$
+
+CREATE PROCEDURE UpdateEmployeeSalaries()
+BEGIN
+    -- Update the salaries of employees in Management and IT departments with more than 5 months of experience
+    UPDATE Employees
+    SET Salary = Salary + 10000
+    WHERE Department IN ('Management', 'IT')
+      AND Experience > INTERVAL 5 MONTH;
+
+    -- Output the number of rows affected
+    SELECT ROW_COUNT() AS 'Number of Employees Updated';
+END$$
+
+DELIMITER ;
